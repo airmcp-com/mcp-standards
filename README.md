@@ -124,7 +124,7 @@ cd mcp-standards
 uv sync
 
 # 3. Configure Claude Desktop
-# Add to ~/.claude/config/claude_desktop_config.json:
+# Add to ~/Library/Application Support/Claude/claude_desktop_config.json:
 {
   "mcpServers": {
     "mcp-standards": {
@@ -138,6 +138,7 @@ uv sync
   }
 }
 # Replace /ABSOLUTE/PATH/TO/ with your actual path!
+# Example: /Users/yourname/Projects/mcp-standards/run_server.py
 
 # 4. Restart Claude Desktop - you're done!
 ```

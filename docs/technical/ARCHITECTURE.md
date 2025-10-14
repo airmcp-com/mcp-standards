@@ -195,7 +195,7 @@ Intent → Strata Router → Tool Selection → MindsDB Execution → Memory Upd
 }
 ```
 
-**Claude Code** (`~/.claude.json`):
+**Claude Desktop Config** (`~/Library/Application Support/Claude/claude_desktop_config.json`):
 ```json
 {
   "projects": {
