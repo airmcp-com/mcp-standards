@@ -215,12 +215,12 @@ CREATE TABLE audit_log (
 - [Quick Start](docs/guides/QUICKSTART.md) - 5-minute setup
 - [Self-Learning Guide](docs/guides/SELF-LEARNING-GUIDE.md) - How pattern learning works
 - [Security Guide](docs/guides/SECURITY.md) - Security features explained
+- [Integration Guide](docs/INTEGRATION_GUIDE.md) - Setup for all AI assistants
+- [Config Standards](docs/CONFIG_STANDARDS.md) - Universal config reference
 
 ### Technical
 - [Architecture](docs/technical/ARCHITECTURE.md) - System design
-
-### Examples
-- [Common Patterns](docs/examples/) - Real-world corrections
+- [Self-Learning PRD](docs/SELF-LEARNING-PRD.md) - Product requirements document
 
 ---
 
