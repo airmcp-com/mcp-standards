@@ -68,6 +68,26 @@ temp/
 
 # MCP cache
 .mcp-cache/
+.claude-flow/
+.mypy_cache/
+.ruff_cache/
 
 # Local config overrides
 .mcp.json
+
+# Package build artifacts
+*.whl
+pip-wheel-metadata/
+
+# Coverage reports
+.coverage.*
+coverage.xml
+nosetests.xml
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# macOS
+.AppleDouble
+.LSOverride

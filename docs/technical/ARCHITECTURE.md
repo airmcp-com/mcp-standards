@@ -1,12 +1,12 @@
-# Research MCP - Unified Architecture
+# MCP Standards - System Architecture
 
-**Last Updated**: 2025-01-11
+**Last Updated**: 2025-10-14
 
 ---
 
 ## Executive Summary
 
-Research MCP is a unified AI knowledge copilot that combines three complementary technologies to create a seamless tool discovery and data federation experience:
+MCP Standards is a self-learning AI standards system that automatically learns from corrections and updates configuration files:
 
 1. **MindsDB** - Federated data access across 200+ sources via single MCP server
 2. **Strata** - Progressive tool discovery and intelligent routing 
@@ -199,7 +199,7 @@ Intent → Strata Router → Tool Selection → MindsDB Execution → Memory Upd
 ```json
 {
   "projects": {
-    "/Users/mattstrautmann/Documents/github/research-mcp": {
+    "/path/to/your/project": {
       "mcpServers": {
         "mindsdb": {
           "type": "stdio",
@@ -336,7 +336,7 @@ actions = await action.plan_from_research(findings)
 ### Phase 1: Foundation (Week 1)
 - [ ] Setup MindsDB MCP server
 - [ ] Configure basic Strata routing  
-- [ ] Migrate claude-memory to SQLite
+- [x] Migrate to SQLite with FTS5
 - [ ] Test unified configuration
 
 ### Phase 2: Integration (Week 2)

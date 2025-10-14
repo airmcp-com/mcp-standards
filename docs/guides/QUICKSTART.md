@@ -7,10 +7,12 @@
 ## Installation
 
 ```bash
-cd /Users/mattstrautmann/Documents/github/research-mcp
+# Clone the repository
+git clone https://github.com/airmcp-com/mcp-standards.git
+cd mcp-standards
 
-# Run setup (handles everything)
-./setup-self-learning.sh
+# Install dependencies
+uv sync
 
 # Restart Claude Desktop
 # macOS: Cmd+Q, then reopen
@@ -56,11 +58,11 @@ get_cost_savings()
 // → Future sessions apply automatically
 ```
 
-### 4. Generate CLAUDE.md
+### 4. Generate AI Standards
 ```javascript
-generate_claudemd(
-  project_path="/Users/mattstrautmann/Documents/github/research-mcp",
-  min_confidence=0.7
+generate_ai_standards(
+  project_path="/path/to/your/project",
+  formats=["claude", "cursor", "copilot"]
 )
 ```
 
@@ -180,11 +182,11 @@ cat .env | grep GEMINI_API_KEY
 ### Database Issues
 ```bash
 # Check database
-sqlite3 ~/.claude-memory/knowledge.db "SELECT COUNT(*) FROM tool_preferences"
+sqlite3 ~/.mcp-standards/knowledge.db "SELECT COUNT(*) FROM tool_preferences"
 
 # Re-run migrations
-cd mcp-servers/claude-memory
-uv run python claude_memory/schema_migration.py
+cd /path/to/mcp-standards
+uv run python src/mcp_standards/schema_migration.py
 ```
 
 ---
