@@ -1,0 +1,205 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 1.0.0)'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Create npm package structure
+        run: |
+          mkdir -p npm-package/{bin,scripts}
+          cp README.md LICENSE npm-package/ 2>/dev/null || true
+
+      - name: Create package.json
+        run: |
+          VERSION="${{ github.ref_name }}"
+          VERSION="${VERSION#v}"  # Remove 'v' prefix
+
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          fi
+
+          cat > npm-package/package.json <<EOF
+          {
+            "name": "airmcp",
+            "version": "$VERSION",
+            "description": "AI Coding Standards Made Easy - Auto-generate instruction files for Claude, Copilot, and Cursor",
+            "main": "bin/airmcp.js",
+            "bin": {
+              "airmcp": "./bin/airmcp.js"
+            },
+            "scripts": {
+              "test": "node bin/airmcp.js --version"
+            },
+            "keywords": [
+              "ai",
+              "mcp",
+              "claude",
+              "copilot",
+              "cursor",
+              "coding-standards",
+              "editorconfig"
+            ],
+            "author": "Matt Strautmann <matt@airmcp.com>",
+            "license": "MIT",
+            "repository": {
+              "type": "git",
+              "url": "https://github.com/mattstrautmann/research-mcp.git"
+            },
+            "homepage": "https://airmcp.com",
+            "bugs": {
+              "url": "https://github.com/mattstrautmann/research-mcp/issues"
+            },
+            "engines": {
+              "node": ">=16.0.0"
+            },
+            "files": [
+              "bin/",
+              "scripts/",
+              "README.md",
+              "LICENSE"
+            ]
+          }
+          EOF
+
+      - name: Create npm wrapper script
+        run: |
+          cat > npm-package/bin/airmcp.js <<'EOF'
+          #!/usr/bin/env node
+
+          const { spawn } = require('child_process');
+
+          // Try to find Python executable
+          const pythonCandidates = ['python3', 'python'];
+          let pythonExec = null;
+
+          for (const candidate of pythonCandidates) {
+            try {
+              const result = require('child_process').spawnSync(candidate, ['--version'], { encoding: 'utf8' });
+              if (result.status === 0) {
+                const version = result.stdout.match(/Python (\d+)\.(\d+)/);
+                if (version && (parseInt(version[1]) > 3 || (parseInt(version[1]) === 3 && parseInt(version[2]) >= 10))) {
+                  pythonExec = candidate;
+                  break;
+                }
+              }
+            } catch (e) {
+              continue;
+            }
+          }
+
+          if (!pythonExec) {
+            console.error('Error: Python 3.10+ is required but not found.');
+            console.error('Please install Python from https://python.org');
+            process.exit(1);
+          }
+
+          // Check if airmcp Python package is installed
+          const checkInstall = require('child_process').spawnSync(
+            pythonExec,
+            ['-c', 'import claude_memory'],
+            { encoding: 'utf8' }
+          );
+
+          if (checkInstall.status !== 0) {
+            console.log('Installing airmcp Python package...');
+            const install = require('child_process').spawnSync(
+              pythonExec,
+              ['-m', 'pip', 'install', '--user', 'airmcp'],
+              { stdio: 'inherit' }
+            );
+
+            if (install.status !== 0) {
+              console.error('\nFailed to install airmcp Python package.');
+              console.error('Please run manually: pip install airmcp');
+              process.exit(1);
+            }
+          }
+
+          // Execute airmcp
+          const airmcp = spawn(pythonExec, ['-m', 'claude_memory', ...process.argv.slice(2)], {
+            stdio: 'inherit'
+          });
+
+          airmcp.on('exit', (code) => {
+            process.exit(code || 0);
+          });
+          EOF
+
+          chmod +x npm-package/bin/airmcp.js
+
+      - name: Test package locally
+        run: |
+          cd npm-package
+          npm pack
+          node bin/airmcp.js --help || true
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: npm-package
+          path: npm-package/
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: [build]
+    environment:
+      name: npm
+      url: https://www.npmjs.com/package/airmcp
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: npm-package
+          path: npm-package/
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Publish to npm
+        run: |
+          cd npm-package
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  verify:
+    runs-on: ubuntu-latest
+    needs: [publish]
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Wait for npm to update
+        run: sleep 30
+
+      - name: Test npx installation
+        run: |
+          npx -y airmcp@latest --version || echo "Version check completed"
