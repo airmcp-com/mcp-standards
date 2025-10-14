@@ -355,7 +355,7 @@ Session 3: Edit → User manually runs tests → Commit
 
 **Check PostToolUse hook is active**:
 ```bash
-cat ~/.claude/config/hooks.json
+cat ~/Library/Application\ Support/Claude/hooks.json
 # Should show PostToolUse hook configured
 ```
 

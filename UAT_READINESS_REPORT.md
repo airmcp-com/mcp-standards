@@ -187,7 +187,7 @@ timeout 5 uv run python run_server.py || echo "Server started successfully"
 
 ### 4. Configure Claude Desktop
 
-Add to `~/.claude/config/claude_desktop_config.json`:
+Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 
 ```json
 {
