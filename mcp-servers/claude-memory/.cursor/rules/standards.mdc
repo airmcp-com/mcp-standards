@@ -1,0 +1,10 @@
+---
+description: Auto-generated coding standards
+generated: 2025-10-13
+---
+
+# Project Coding Standards
+
+## Package Management
+
+Always use `uv` for package operations.
