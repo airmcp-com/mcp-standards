@@ -1,15 +1,15 @@
 # Universal Learning System for AI Coding Assistants - PRD
 
-**Project**: claude-memory MCP Server Evolution
-**Version**: 2.0.0
-**Status**: In Development
-**Last Updated**: 2025-10-13
+**Project**: MCP Standards - Self-Learning AI Standards System
+**Version**: 0.1.0
+**Status**: Active Development
+**Last Updated**: 2025-10-14
 
 ---
 
 ## Executive Summary
 
-Transform the claude-memory MCP server from a manual memory system into a **universal learning system** that makes ALL AI coding assistants progressively smarter through automatic knowledge capture, pattern learning, and intelligent config management.
+MCP Standards is a **universal learning system** that makes ALL AI coding assistants progressively smarter through automatic knowledge capture, pattern learning, and intelligent config management.
 
 ### The Problem
 
@@ -644,7 +644,7 @@ Create/update `~/.claude/hooks.json`:
         "hooks": [
           {
             "type": "command",
-            "command": "/path/to/research-mcp/mcp-servers/claude-memory/hooks/capture_hook.py",
+            "command": "/path/to/mcp-standards/hooks/capture_hook.py",
             "timeout": 5
           }
         ]
@@ -661,11 +661,11 @@ Update `.mcp.json`:
 ```json
 {
   "mcpServers": {
-    "claude-memory": {
+    "mcp-standards": {
       "command": "uv",
       "args": [
         "--directory",
-        "/path/to/research-mcp/mcp-servers/claude-memory",
+        "/path/to/mcp-standards",
         "run",
         "run_server.py"
       ],
@@ -823,7 +823,7 @@ Update `.mcp.json`:
 **Last Updated**: 2025-10-12
 **Next Review**: Weekly during development
 **Stakeholders**: User (mattstrautmann), Contributors
-**Repo**: https://github.com/mattstrautmann/research-mcp
+**Repo**: https://github.com/airmcp-com/mcp-standards
 
 
 ## Implementation Progress (Auto-Updated)
@@ -844,7 +844,7 @@ Update `.mcp.json`:
 - `hooks/capture_hook.py` - Main hook entry point
 - `hooks/significance_scorer.py` - Significance calculation
 - `hooks/pattern_extractor.py` - Pattern detection
-- `claude_memory/schema_migration.py` - Database migrations
+- `src/mcp_standards/schema_migration.py` - Database migrations
 - `intelligence/claudemd_manager.py` - CLAUDE.md management
 
 **Next Steps:**

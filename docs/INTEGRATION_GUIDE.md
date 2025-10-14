@@ -18,8 +18,9 @@ This guide covers how to set up the universal learning system to work with:
 ### 1. Install & Configure MCP Server
 
 ```bash
-cd /Users/mattstrautmann/Documents/github/research-mcp
-./setup-self-learning.sh
+git clone https://github.com/airmcp-com/mcp-standards.git
+cd mcp-standards
+uv sync
 ```
 
 ### 2. Restart Claude Desktop
@@ -154,7 +155,7 @@ list_recent()
 
 The system periodically exports to:
 ```
-~/.claude-memory/exports/project-knowledge-YYYYMMDD.md
+~/.mcp-standards/exports/project-knowledge-YYYYMMDD.md
 ```
 
 You'll receive a notification when export is ready.
@@ -360,13 +361,13 @@ cat ~/.claude/config/hooks.json
 
 **Check MCP server is running**:
 ```bash
-ps aux | grep "claude-memory"
+ps aux | grep "mcp-standards"
 # Should show running process
 ```
 
 **Check database**:
 ```bash
-sqlite3 ~/.claude-memory/knowledge.db "SELECT COUNT(*) FROM tool_logs;"
+sqlite3 ~/.mcp-standards/knowledge.db "SELECT COUNT(*) FROM tool_logs;"
 # Should show >0 if capturing executions
 ```
 
@@ -379,10 +380,10 @@ get_config("auto_update_enabled")
 # Should return True
 ```
 
-**Check notifications**:
+**Check logs**:
 ```bash
-# Look for notification logs
-cat ~/.claude-memory/logs/notifications.log
+# Check server logs if needed
+tail -f ~/.mcp-standards/logs/server.log
 ```
 
 **Manual trigger**:
@@ -607,7 +608,7 @@ Then enable learning system.
 - [README.md](../README.md) - Main documentation
 
 ### Issues
-Report issues at: https://github.com/mattstrautmann/research-mcp/issues
+Report issues at: https://github.com/airmcp-com/mcp-standards/issues
 
 ---
 

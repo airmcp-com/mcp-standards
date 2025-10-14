@@ -1,4 +1,4 @@
-# Claude Memory MCP Server - Launch Strategy
+# MCP Standards - Launch Strategy
 
 ## Executive Summary
 
@@ -10,10 +10,10 @@ Production-ready MCP server with auto-learning AI standards system. Ready for de
 
 ### Primary Channels (Days 1-3)
 
-**1. NPM Registry** (Day 1)
-- Command: `npx claude-memory`
-- Audience: Node.js ecosystem
-- Setup: `npm publish`
+**1. PyPI Registry** (Primary)
+- Command: `pip install mcp-standards`
+- Audience: Python ecosystem
+- Setup: `python -m build && twine upload dist/*`
 - Timeline: Immediate
 
 **2. MCP.SO Directory** (Day 1)
@@ -30,12 +30,13 @@ Production-ready MCP server with auto-learning AI standards system. Ready for de
 
 ### Required Package Metadata
 
-```json
-{
-  "mcpName": "io.github.USERNAME/claude-memory",
-  "keywords": ["mcp", "model-context-protocol", "memory", "ai"],
-  "bin": {"claude-memory": "./dist/index.js"}
-}
+```toml
+[project]
+name = "mcp-standards"
+keywords = ["mcp", "model-context-protocol", "self-learning", "ai", "claude"]
+
+[project.scripts]
+mcp-standards = "mcp_standards.server:main"
 ```
 
 ---

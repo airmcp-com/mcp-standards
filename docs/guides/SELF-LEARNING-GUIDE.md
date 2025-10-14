@@ -19,7 +19,7 @@ User corrects Claude → Pattern detected → Frequency tracked → Preference p
 
 ## Architecture (Unified Server)
 
-We combined the basic and enhanced servers into **one unified system** in [server.py](mcp-servers/claude-memory/claude_memory/server.py):
+We built a **unified system** in [server.py](../../src/mcp_standards/server.py):
 
 ### Components Integrated:
 
@@ -174,16 +174,17 @@ Next time Claude starts, it sees "use uv not pip" in CLAUDE.md context → Never
 
 ### Modified Files:
 
-1. **[server.py](mcp-servers/claude-memory/claude_memory/server.py)** (Main integration)
+1. **[server.py](../../src/mcp_standards/server.py)** (Main integration)
    - Added imports for PatternExtractor and ClaudeMdManager
    - Initialize both in `__init__`
    - Updated `_log_tool_execution` to always extract patterns first
-   - Added 3 new tool handlers
-   - Added 3 new MCP tools to list_tools()
+   - Added tool handlers for pattern learning
+   - Added MCP tools for preferences and standards generation
 
-2. **[pattern_extractor.py](mcp-servers/claude-memory/hooks/pattern_extractor.py)** (Bug fix)
-   - Changed `tool_executions` → `tool_logs` (use existing table)
-   - Added error handling for missing table
+2. **[pattern_extractor.py](../../hooks/pattern_extractor.py)** (Pattern detection)
+   - Detects correction patterns from tool executions
+   - Tracks pattern frequency in database
+   - Promotes patterns to preferences after 3+ occurrences
 
 ### New Files:
 
@@ -376,4 +377,4 @@ update_claudemd(file_path="./CLAUDE.md")
 **Built with**: Python, SQLite, MCP, Claude Agent SDK
 **License**: MIT
 **Author**: Matt Strautmann
-**Project**: [research-mcp](https://github.com/mattstrautmann/research-mcp)
+**Project**: [MCP Standards](https://github.com/airmcp-com/mcp-standards)
