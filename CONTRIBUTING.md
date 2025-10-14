@@ -1,6 +1,6 @@
-# Contributing to AirMCP
+# Contributing to MCP Standards
 
-Thank you for considering contributing to AirMCP! We welcome contributions from the community.
+Thank you for considering contributing to MCP Standards! We welcome contributions from the community.
 
 ## How to Contribute
 
@@ -39,11 +39,10 @@ Have an idea for a new feature? Open an issue with:
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR-USERNAME/research-mcp.git
-cd research-mcp
+git clone https://github.com/YOUR-USERNAME/mcp-standards.git
+cd mcp-standards
 
 # Install dependencies
-cd mcp-servers/claude-memory
 uv sync
 
 # Run tests
@@ -60,7 +59,7 @@ uv run pytest
 uv run pytest tests/integration/test_pattern_learning.py -v
 
 # With coverage
-uv run pytest --cov=claude_memory
+uv run pytest --cov=mcp_standards
 ```
 
 ### Code Style
@@ -190,4 +189,4 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 ---
 
-**Thank you for contributing to AirMCP! 🎉**
+**Thank you for contributing to MCP Standards! 🎉**
