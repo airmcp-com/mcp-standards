@@ -173,7 +173,7 @@ def test_feature_name():
 
 If you discover a security vulnerability:
 1. **DO NOT** open a public issue
-2. Email: matt@mattstrautmann.com
+2. Email: matt.strautmann@gmail.com
 3. Include detailed description
 4. We'll respond within 48 hours
 
@@ -185,7 +185,7 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 - Check existing issues and discussions
 - Ask in GitHub Discussions
-- Email: matt@mattstrautmann.com
+- Email: matt.strautmann@gmail.com
 
 ---
 

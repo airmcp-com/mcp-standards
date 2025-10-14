@@ -341,7 +341,7 @@ MIT License - see [LICENSE](LICENSE) for details
 
 - **GitHub Issues**: [Report bugs or request features](https://github.com/airmcp-com/mcp-standards/issues)
 - **Discussions**: [Ask questions or share ideas](https://github.com/airmcp-com/mcp-standards/discussions)
-- **Email**: matt@mattstrautmann.com
+- **Email**: matt.strautmann@gmail.com
 
 ---
 

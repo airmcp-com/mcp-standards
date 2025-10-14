@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
-    {name = "Matt Strautmann", email = "matt@mattstrautmann.com"}
+    {name = "Matt Strautmann", email = "matt.strautmann@gmail.com"}
 ]
 keywords = ["claude", "mcp", "ai-assistant", "self-learning", "pattern-learning", "claude-code", "sqlite", "knowledge-base"]
 classifiers = [
