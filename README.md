@@ -134,24 +134,43 @@ uv sync
         "python",
         "/ABSOLUTE/PATH/TO/mcp-standards/run_server.py"
       ]
-    },
-    "agentic-flow": {
-      "command": "npx",
-      "args": ["-y", "agentic-flow", "mcp"],
-      "env": {
-        "GEMINI_API_KEY": "your_gemini_api_key_here",
-        "DEFAULT_MODEL": "gemini-1.5-flash",
-        "COST_OPTIMIZATION": "true"
-      }
     }
   }
 }
 # Replace /ABSOLUTE/PATH/TO/ with your actual path!
 # Example: /Users/yourname/Projects/mcp-standards/run_server.py
-# Get free Gemini API key: https://aistudio.google.com/app/apikey
 
 # 4. Restart Claude Desktop - you're done!
 ```
+
+### Optional: Add Cost Optimization (99.5% Savings)
+
+**Want to save on AI costs?** Add [agentic-flow](https://github.com/ProfSynapse/agentic-flow) to route simple operations to cheaper models:
+
+```bash
+# Get free Gemini API key: https://aistudio.google.com/app/apikey
+
+# Add to your claude_desktop_config.json (alongside mcp-standards):
+{
+  "mcpServers": {
+    "mcp-standards": { ... },
+    "agentic-flow": {
+      "command": "npx",
+      "args": ["-y", "agentic-flow", "mcp"],
+      "env": {
+        "GEMINI_API_KEY": "your_gemini_api_key_here",
+        "DEFAULT_MODEL": "gemini-1.5-flash"
+      }
+    }
+  }
+}
+```
+
+**What agentic-flow does:**
+- Routes simple operations (memory, search) → Gemini Flash ($0.075/1M tokens)
+- Keeps complex operations (code gen) → Claude Sonnet ($15/1M tokens)
+- Saves ~$389/month on typical usage
+- 100% optional - MCP Standards works perfectly without it
 
 ### Try It
 
