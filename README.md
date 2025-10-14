@@ -134,11 +134,21 @@ uv sync
         "python",
         "/ABSOLUTE/PATH/TO/mcp-standards/run_server.py"
       ]
+    },
+    "agentic-flow": {
+      "command": "npx",
+      "args": ["-y", "agentic-flow", "mcp"],
+      "env": {
+        "GEMINI_API_KEY": "your_gemini_api_key_here",
+        "DEFAULT_MODEL": "gemini-1.5-flash",
+        "COST_OPTIMIZATION": "true"
+      }
     }
   }
 }
 # Replace /ABSOLUTE/PATH/TO/ with your actual path!
 # Example: /Users/yourname/Projects/mcp-standards/run_server.py
+# Get free Gemini API key: https://aistudio.google.com/app/apikey
 
 # 4. Restart Claude Desktop - you're done!
 ```
