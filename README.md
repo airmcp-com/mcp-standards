@@ -1,6 +1,6 @@
-# AirMCP - The AI Assistant That Learns From Your Corrections
+# MCP Standards - Self-Learning AI Standards System
 
-**Stop repeating yourself. AirMCP learns from your corrections automatically and updates your AI standards.**
+**Stop repeating yourself. MCP Standards learns from your corrections automatically and updates your AI configuration.**
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -21,15 +21,15 @@ You keep telling your AI assistant the same things:
 
 ## The Solution
 
-**AirMCP learns from your corrections automatically:**
+**MCP Standards learns from your corrections automatically:**
 
 1. You correct Claude 3 times: "use `uv` not `pip`"
-2. AirMCP detects the pattern
+2. MCP Standards detects the pattern
 3. Preference promoted (80% confidence)
 4. CLAUDE.md updated automatically
 5. **Claude never makes that mistake again**
 
-### Before AirMCP
+### Before MCP Standards
 ```
 You: "Use uv not pip"
 Claude: *ignores, uses pip again*
@@ -38,12 +38,12 @@ Claude: *ignores again*
 You: "I TOLD YOU 10 TIMES, USE UV!!!"
 ```
 
-### After AirMCP
+### After MCP Standards
 ```
 You: "Use uv not pip" (correction #1)
 You: "Use uv not pip" (correction #2)
 You: "Use uv not pip" (correction #3)
-AirMCP: ✅ Pattern learned! Added to CLAUDE.md
+MCP Standards: ✅ Pattern learned! Added to CLAUDE.md
 Claude: *uses uv from now on, forever*
 ```
 
@@ -117,8 +117,8 @@ Built with defense-in-depth:
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/matt-atadata/research-mcp.git
-cd research-mcp
+git clone https://github.com/airmcp-com/mcp-standards.git
+cd mcp-standards
 
 # 2. Run installer (auto-configures Claude Desktop/Code)
 ./install.sh
@@ -193,10 +193,10 @@ CREATE TABLE audit_log (
 
 ---
 
-## What Makes AirMCP Different?
+## What Makes MCP Standards Different?
 
-| Feature | AirMCP | Tabnine | Copilot | Other MCPs |
-|---------|--------|---------|---------|------------|
+| Feature | MCP Standards | Tabnine | Copilot | Other MCPs |
+|---------|---------------|---------|---------|------------|
 | **Learns from corrections** | ✅ Auto | ❌ No | ❌ No | ❌ No |
 | **Updates CLAUDE.md** | ✅ Auto | N/A | N/A | ❌ Manual |
 | **Pattern detection** | ✅ 5 types | ❌ No | ❌ No | ❌ No |
@@ -205,7 +205,7 @@ CREATE TABLE audit_log (
 | **Security features** | ✅ 4 layers | ⚠️ Basic | ⚠️ Basic | ⚠️ Varies |
 
 **Unique Value Proposition:**
-**AirMCP is the ONLY system that learns from your corrections and automatically updates your AI standards.**
+**MCP Standards is the ONLY system that learns from your corrections and automatically updates your AI configuration.**
 
 ---
 
@@ -218,10 +218,9 @@ CREATE TABLE audit_log (
 
 ### Technical
 - [Architecture](docs/technical/ARCHITECTURE.md) - System design
-- [API Reference](docs/technical/API-REFERENCE.md) - MCP tools documentation
 
 ### Examples
-- [Common Patterns](docs/examples/example-corrections.md) - Real-world corrections
+- [Common Patterns](docs/examples/) - Real-world corrections
 
 ---
 
@@ -309,8 +308,8 @@ MIT License - see [LICENSE](LICENSE) for details
 
 ## Support
 
-- **GitHub Issues**: [Report bugs or request features](https://github.com/matt-atadata/research-mcp/issues)
-- **Discussions**: [Ask questions or share ideas](https://github.com/matt-atadata/research-mcp/discussions)
+- **GitHub Issues**: [Report bugs or request features](https://github.com/airmcp-com/mcp-standards/issues)
+- **Discussions**: [Ask questions or share ideas](https://github.com/airmcp-com/mcp-standards/discussions)
 - **Email**: matt@mattstrautmann.com
 
 ---
@@ -332,8 +331,8 @@ MIT License - see [LICENSE](LICENSE) for details
 
 ---
 
-**Made with ❤️ by [Matt Strautmann](https://github.com/matt-atadata)**
+**Made with ❤️ by [Matt Strautmann](https://github.com/matt-strautmann)**
 
-**Stop repeating yourself. Start using AirMCP.**
+**Stop repeating yourself. Start using MCP Standards.**
 
 ⭐ Star us on GitHub if this helps you!
