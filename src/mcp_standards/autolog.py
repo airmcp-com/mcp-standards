@@ -218,7 +218,7 @@ def get_autologger(db_path: Optional[Path] = None) -> AutoLogger:
     global _autologger
     if _autologger is None:
         if db_path is None:
-            db_path = Path.home() / ".claude-memory" / "knowledge.db"
+            db_path = Path.home() / ".mcp-standards" / "knowledge.db"
         db_path.parent.mkdir(parents=True, exist_ok=True)
         _autologger = AutoLogger(db_path)
     return _autologger

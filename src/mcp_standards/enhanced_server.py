@@ -44,11 +44,11 @@ class EnhancedClaudeMemoryMCP:
     """Enhanced Claude-native knowledge storage with self-learning"""
 
     def __init__(self, db_path: Optional[str] = None):
-        self.server = Server("claude-memory-enhanced")
+        self.server = Server("mcp-standards-enhanced")
 
         # Use centralized location
         if db_path is None:
-            self.db_path = Path.home() / ".claude-memory" / "knowledge.db"
+            self.db_path = Path.home() / ".mcp-standards" / "knowledge.db"
         else:
             self.db_path = Path(db_path)
 

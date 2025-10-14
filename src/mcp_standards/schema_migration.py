@@ -1,6 +1,6 @@
 """Database Schema Migration for Self-Learning Features
 
-Extends the existing claude-memory schema with new tables for:
+Extends the existing MCP Standards schema with new tables for:
 - Tool execution tracking
 - Pattern frequency analysis
 - Tool preferences (learned rules)
@@ -266,13 +266,13 @@ def migrate_database(db_path: Path = None) -> bool:
     Convenience function to migrate database
 
     Args:
-        db_path: Path to database (defaults to ~/.claude-memory/knowledge.db)
+        db_path: Path to database (defaults to ~/.mcp-standards/knowledge.db)
 
     Returns:
         True if successful, False otherwise
     """
     if db_path is None:
-        db_path = Path.home() / ".claude-memory" / "knowledge.db"
+        db_path = Path.home() / ".mcp-standards" / "knowledge.db"
 
     db_path.parent.mkdir(parents=True, exist_ok=True)
 

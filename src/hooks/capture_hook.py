@@ -24,7 +24,7 @@ class HookCaptureSystem:
 
     def __init__(self, db_path: Optional[Path] = None):
         if db_path is None:
-            self.db_path = Path.home() / ".claude-memory" / "knowledge.db"
+            self.db_path = Path.home() / ".mcp-standards" / "knowledge.db"
         else:
             self.db_path = Path(db_path)
 

@@ -113,17 +113,33 @@ Built with defense-in-depth:
 
 ## Quick Start
 
-### Install (3 commands)
+### Install
 
 ```bash
 # 1. Clone repository
 git clone https://github.com/airmcp-com/mcp-standards.git
 cd mcp-standards
 
-# 2. Run installer (auto-configures Claude Desktop/Code)
-./install.sh
+# 2. Install dependencies
+uv sync
 
-# 3. Restart Claude - you're done!
+# 3. Configure Claude Desktop
+# Add to ~/.claude/config/claude_desktop_config.json:
+{
+  "mcpServers": {
+    "mcp-standards": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "/ABSOLUTE/PATH/TO/mcp-standards/run_server.py"
+      ]
+    }
+  }
+}
+# Replace /ABSOLUTE/PATH/TO/ with your actual path!
+
+# 4. Restart Claude Desktop - you're done!
 ```
 
 ### Try It
