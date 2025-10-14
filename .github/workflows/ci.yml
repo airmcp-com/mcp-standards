@@ -14,10 +14,10 @@ jobs:
         python-version: ['3.10', '3.11', '3.12']
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -30,39 +30,34 @@ jobs:
         run: uv --version
 
       - name: Install dependencies
-        run: |
-          cd mcp-servers/claude-memory
-          uv sync
+        run: uv sync
 
       - name: Run tests
         run: |
-          cd mcp-servers/claude-memory
-          uv run pytest tests/ -v --cov=claude_memory --cov-report=xml --cov-report=term
+          uv run pytest tests/ -v --cov=mcp_standards --cov-report=xml --cov-report=term
 
       - name: Lint with ruff
         run: |
-          cd mcp-servers/claude-memory
-          uv run ruff check claude_memory/ || echo "Linting completed with warnings"
+          uv run ruff check src/mcp_standards/ || echo "Linting completed with warnings"
 
       - name: Type check with mypy
         continue-on-error: true
         run: |
-          cd mcp-servers/claude-memory
-          uv run mypy claude_memory/ || echo "Type checking completed with warnings"
+          uv run mypy src/mcp_standards/ || echo "Type checking completed with warnings"
 
       - name: Upload coverage
         uses: codecov/codecov-action@v3
         with:
-          file: ./mcp-servers/claude-memory/coverage.xml
+          file: ./coverage.xml
           fail_ci_if_error: false
 
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
@@ -73,22 +68,20 @@ jobs:
 
       - name: Security scan with safety
         run: |
-          cd mcp-servers/claude-memory
           safety check --json || echo "Safety scan completed"
 
       - name: Security scan with bandit
         run: |
-          cd mcp-servers/claude-memory
-          bandit -r claude_memory/ -f json || echo "Bandit scan completed"
+          bandit -r src/mcp_standards/ -f json || echo "Bandit scan completed"
 
   integration:
     runs-on: ubuntu-latest
     needs: [test]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
@@ -97,13 +90,9 @@ jobs:
           curl -LsSf https://astral.sh/uv/install.sh | sh
           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
-      - name: Run installation script
-        run: |
-          ./install.sh
-        env:
-          CI: true
+      - name: Install dependencies
+        run: uv sync
 
       - name: Test MCP server startup
         run: |
-          cd mcp-servers/claude-memory
           timeout 5 uv run python run_server.py || true

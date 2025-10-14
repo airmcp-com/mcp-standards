@@ -14,10 +14,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
@@ -30,24 +30,19 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         run: |
           VERSION="${{ github.event.inputs.version }}"
-          cd mcp-servers/claude-memory
           sed -i "s/version = .*/version = \"$VERSION\"/" pyproject.toml
 
       - name: Build package
-        run: |
-          cd mcp-servers/claude-memory
-          python -m build
+        run: python -m build
 
       - name: Check package
-        run: |
-          cd mcp-servers/claude-memory
-          twine check dist/*
+        run: twine check dist/*
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: python-package
-          path: mcp-servers/claude-memory/dist/
+          path: dist/
 
   publish-testpypi:
     runs-on: ubuntu-latest
@@ -55,7 +50,7 @@ jobs:
     if: github.ref_type == 'tag' && contains(github.ref, 'beta')
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v5
         with:
           name: python-package
           path: dist/
@@ -74,13 +69,13 @@ jobs:
     if: github.ref_type == 'tag' && !contains(github.ref, 'beta')
     environment:
       name: pypi
-      url: https://pypi.org/project/airmcp
+      url: https://pypi.org/project/mcp-standards
     permissions:
       id-token: write  # OIDC for PyPI trusted publishing
 
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v5
         with:
           name: python-package
           path: dist/
@@ -100,9 +95,9 @@ jobs:
 
       - name: Install from PyPI
         run: |
-          pip install airmcp --upgrade
-          airmcp --version || python -m airmcp --version
+          pip install mcp-standards --upgrade
+          mcp-standards --version || python -m mcp_standards --version
 
       - name: Test basic functionality
         run: |
-          python -c "import claude_memory; print('Import successful')"
+          python -c "import mcp_standards; print('Import successful')"
