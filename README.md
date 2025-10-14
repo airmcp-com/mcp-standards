@@ -265,23 +265,54 @@ CREATE TABLE audit_log (
 
 ---
 
+## Cost Optimization (Optional)
+
+By default, MCP Standards uses Claude Sonnet for all operations. You can optionally configure it to use **99.5% cheaper models** for simple operations:
+
+### Setup Gemini Flash (Recommended)
+
+1. **Get free API key**: https://aistudio.google.com/app/apikey
+2. **Add to your environment**:
+   ```bash
+   export GEMINI_API_KEY="your_key_here"
+   # Or add to ~/.bashrc or ~/.zshrc
+   ```
+3. **Automatic routing**:
+   - Simple operations (memory CRUD, searches) → Gemini 1.5 Flash ($0.075/1M tokens)
+   - Complex operations (code generation, pattern analysis) → Claude Sonnet ($15/1M tokens)
+   - **99.5% cost savings** on routine operations
+
+### Powered by Agentic Flow
+
+MCP Standards uses [agentic-flow](https://github.com/ProfSynapse/agentic-flow) for intelligent model routing and cost optimization.
+
+**Features:**
+- Automatic model selection based on task complexity
+- Support for 20+ AI providers (Anthropic, Google, OpenRouter, Groq, etc.)
+- Fallback chains for reliability
+- Token usage tracking
+
+**Learn more**: [agentic-flow documentation](https://github.com/ProfSynapse/agentic-flow)
+
+---
+
 ## Roadmap
 
-### ✅ v0.1.0 (Current)
+### ✅ v0.1.0 (October 2025 - Current)
 - Self-learning pattern detection
 - CLAUDE.md auto-generation
 - Config file parsing
 - Security enhancements (whitelist, sanitization, rate limiting, audit logs)
 - 100% local with SQLite + FTS5
 
-### 🔄 v0.2.0 (Q1 2025)
+### 🔄 v0.2.0 (Q1 2026)
 - Implicit rejection detection (user edits within 2 min)
 - Rule violation detection (compare vs config files)
 - Workflow pattern learning (test after code changes)
 - Cross-project promotion (project → global)
 - MCP notifications for pattern promotions
 
-### 🔮 v0.3.0 (Q2 2025)
+### 🔮 v0.3.0 (Q2 2026)
 - Team sync (share learned preferences)
 - Analytics dashboard (trends, common corrections)
 - Cloud backup (optional)
@@ -325,7 +356,8 @@ MIT License - see [LICENSE](LICENSE) for details
 
 ## Acknowledgments
 
-- Anthropic for Claude and MCP
+- **Anthropic** for Claude and MCP
+- **[agentic-flow](https://github.com/ProfSynapse/agentic-flow)** for intelligent model routing and cost optimization
 - The open source community
 - Everyone who tested early versions
 
