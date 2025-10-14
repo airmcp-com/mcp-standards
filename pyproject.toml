@@ -33,7 +33,7 @@ Issues = "https://github.com/airmcp-com/mcp-standards/issues"
 mcp-standards = "mcp_standards.server:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src"]
+packages = ["src/mcp_standards"]
 
 [build-system]
 requires = ["hatchling"]
@@ -45,4 +45,13 @@ dev-dependencies = [
     "pytest-asyncio>=1.2.0",
     "pytest-cov>=7.0.0",
     "pytest-mock>=3.15.1",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --cov=src/mcp_standards --cov-report=term-missing"

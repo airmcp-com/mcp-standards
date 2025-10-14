@@ -1,14 +1,14 @@
-"""Shared pytest fixtures for claude-memory tests"""
+"""Shared pytest fixtures for mcp-standards tests"""
 import pytest
 import sqlite3
 from pathlib import Path
 from typing import Generator
 import sys
 
-# Add parent directory to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent / "mcp-servers" / "claude-memory"))
+# Add src directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from claude_memory.server import ClaudeMemoryMCP
+from mcp_standards.server import main
 
 
 @pytest.fixture(scope="session")
@@ -22,16 +22,6 @@ def temp_db(tmp_path: Path) -> Path:
     """Temporary database for tests"""
     db_path = tmp_path / "test_knowledge.db"
     return db_path
-
-
-@pytest.fixture
-async def memory_server(temp_db: Path) -> Generator[ClaudeMemoryMCP, None, None]:
-    """ClaudeMemoryMCP instance with test database"""
-    server = ClaudeMemoryMCP(db_path=str(temp_db))
-    yield server
-    # Cleanup
-    if temp_db.exists():
-        temp_db.unlink()
 
 
 @pytest.fixture
@@ -135,18 +125,6 @@ def malicious_inputs() -> dict[str, str]:
         "unicode_exploit": "\u202e\u202dtxt.exe",
         "long_input": "A" * 100000
     }
-
-
-@pytest.fixture
-async def populated_server(memory_server: ClaudeMemoryMCP, sample_episodes: list[dict]) -> ClaudeMemoryMCP:
-    """Server with pre-populated episode data"""
-    for episode in sample_episodes:
-        await memory_server._add_episode(
-            episode["name"],
-            episode["content"],
-            episode["source"]
-        )
-    return memory_server
 
 
 @pytest.fixture
