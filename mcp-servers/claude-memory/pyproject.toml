@@ -1,14 +1,14 @@
 [project]
-name = "claude-memory-mcp"
+name = "airmcp"
 version = "0.1.0"
-description = "Persistent memory for Claude using SQLite with full-text search"
+description = "Self-learning AI standards system - learns from corrections and auto-updates CLAUDE.md"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
     {name = "Matt Strautmann", email = "matt@mattstrautmann.com"}
 ]
-keywords = ["claude", "mcp", "memory", "sqlite", "knowledge-base"]
+keywords = ["claude", "mcp", "ai-assistant", "self-learning", "pattern-learning", "claude-code", "sqlite", "knowledge-base"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
