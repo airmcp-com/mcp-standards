@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "claude-memory": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/Users/mattstrautmann/Documents/github/research-mcp/mcp-servers/claude-memory",
+        "run",
+        "run_server.py"
+      ]
+    }
+  }
+}

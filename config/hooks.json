@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /Users/mattstrautmann/Documents/github/research-mcp/mcp-servers/claude-memory/hooks/capture_hook.py",
+            "timeout": 5,
+            "description": "Capture tool executions for automatic learning"
+          }
+        ]
+      }
+    ]
+  },
+  "config": {
+    "description": "Automatic learning hooks for claude-memory self-learning system",
+    "version": "2.0.0",
+    "features": [
+      "Automatic tool execution capture",
+      "Pattern extraction from corrections",
+      "CLAUDE.md auto-generation",
+      "Agent performance tracking",
+      "99.5% cost savings via smart routing"
+    ]
+  }
+}
