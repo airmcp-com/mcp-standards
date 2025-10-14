@@ -7,6 +7,9 @@
 *.db
 *.db-shm
 *.db-wal
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
 
 # Python
 __pycache__/
@@ -29,6 +32,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # Virtual environments
 venv/
@@ -43,14 +47,11 @@ env/
 *.swo
 *~
 
-# MCP
-.mcp-cache/
-
-# Claude Flow
-.swarm/
-.claude-flow/
-.hive-mind/
-.claude-flow-bridge-state.json
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
 
 # OS
 .DS_Store
@@ -60,39 +61,13 @@ Thumbs.db
 *.log
 logs/
 
-# Test
-.pytest_cache/
-.coverage
-htmlcov/
-
 # Temporary
 tmp/
 temp/
 *.tmp
 
-# Claude Flow generated files
-.claude/settings.local.json
+# MCP cache
+.mcp-cache/
+
+# Local config overrides
 .mcp.json
-claude-flow.config.json
-.swarm/
-.hive-mind/
-.claude-flow/
-memory/
-coordination/
-memory/claude-flow-data.json
-memory/sessions/*
-!memory/sessions/README.md
-memory/agents/*
-!memory/agents/README.md
-coordination/memory_bank/*
-coordination/subtasks/*
-coordination/orchestration/*
-*.db
-*.db-journal
-*.db-wal
-*.sqlite
-*.sqlite-journal
-*.sqlite-wal
-claude-flow
-# Removed Windows wrapper files per user request
-hive-mind-prompt-*.txt
