@@ -1,5 +1,5 @@
 [project]
-name = "airmcp"
+name = "mcp-standards"
 version = "0.1.0"
 description = "Self-learning AI standards system - learns from corrections and auto-updates CLAUDE.md"
 readme = "README.md"
@@ -24,16 +24,16 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/mattstrautmann/research-mcp"
-Documentation = "https://github.com/mattstrautmann/research-mcp#readme"
-Repository = "https://github.com/mattstrautmann/research-mcp"
-Issues = "https://github.com/mattstrautmann/research-mcp/issues"
+Homepage = "https://github.com/airmcp-com/mcp-standards"
+Documentation = "https://github.com/airmcp-com/mcp-standards#readme"
+Repository = "https://github.com/airmcp-com/mcp-standards"
+Issues = "https://github.com/airmcp-com/mcp-standards/issues"
 
 [project.scripts]
-claude-memory = "claude_memory.server:main"
+mcp-standards = "mcp_standards.server:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["claude_memory"]
+packages = ["src"]
 
 [build-system]
 requires = ["hatchling"]
