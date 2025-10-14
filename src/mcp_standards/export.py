@@ -181,9 +181,9 @@ class MarkdownExporter:
 def export_to_markdown(db_path: Optional[Path] = None, export_path: Optional[Path] = None):
     """Export knowledge base to markdown files"""
     if db_path is None:
-        db_path = Path.home() / ".claude-memory" / "knowledge.db"
+        db_path = Path.home() / ".mcp-standards" / "knowledge.db"
     if export_path is None:
-        export_path = Path.home() / ".claude-memory" / "knowledge"
+        export_path = Path.home() / ".mcp-standards" / "exports"
         
     exporter = MarkdownExporter(db_path, export_path)
     exporter.export_all()
