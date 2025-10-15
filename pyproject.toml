@@ -1,6 +1,6 @@
 [project]
 name = "mcp-standards"
-version = "0.1.0-alpha.1"
+version = "0.1.0-alpha.2"
 description = "Self-learning AI standards system - learns from corrections and auto-updates CLAUDE.md"
 readme = "README.md"
 requires-python = ">=3.10"
