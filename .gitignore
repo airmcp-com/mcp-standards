@@ -65,6 +65,7 @@ logs/
 tmp/
 temp/
 *.tmp
+docs/guides/PUBLISHING.md
 
 # MCP cache
 .mcp-cache/
