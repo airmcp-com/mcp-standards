@@ -31,13 +31,11 @@ from .schema_migration import SchemaMigration
 from .model_router import get_model_router, get_agentic_flow_integration
 
 # Import intelligence layer
-import sys
-sys.path.append(str(Path(__file__).parent.parent))
-from hooks.pattern_extractor import PatternExtractor
-from intelligence.claudemd_manager import ClaudeMdManager
-from intelligence.temporal_graph import TemporalKnowledgeGraph
-from intelligence.validation_engine import ValidationEngine
-from intelligence.agent_tracker import AgentPerformanceTracker
+from .hooks.pattern_extractor import PatternExtractor
+from .intelligence.claudemd_manager import ClaudeMdManager
+from .intelligence.temporal_graph import TemporalKnowledgeGraph
+from .intelligence.validation_engine import ValidationEngine
+from .intelligence.agent_tracker import AgentPerformanceTracker
 
 
 class EnhancedClaudeMemoryMCP:

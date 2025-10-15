@@ -17,10 +17,8 @@ from .export import export_to_markdown
 from .standards import ConfigParser, StandardsExtractor, InstructionGenerator
 
 # Import pattern learning components
-import sys
-sys.path.append(str(Path(__file__).parent.parent))
-from hooks.pattern_extractor import PatternExtractor
-from intelligence.claudemd_manager import ClaudeMdManager
+from .hooks.pattern_extractor import PatternExtractor
+from .intelligence.claudemd_manager import ClaudeMdManager
 
 
 class ClaudeMemoryMCP:
