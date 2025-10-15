@@ -145,7 +145,7 @@ uv sync
 # 4. Restart Claude Desktop - you're done!
 ```
 
-### Option B: From PyPI (Coming Soon)
+### Option B: From PyPI (Recommended)
 
 ```bash
 # Install from PyPI
