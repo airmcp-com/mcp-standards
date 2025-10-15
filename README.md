@@ -145,6 +145,26 @@ uv sync
 # 4. Restart Claude Desktop - you're done!
 ```
 
+### Option B: From PyPI (Coming Soon)
+
+```bash
+# Install from PyPI
+uv pip install mcp-standards
+
+# Configure Claude Desktop
+# Add to ~/Library/Application Support/Claude/claude_desktop_config.json:
+{
+  "mcpServers": {
+    "mcp-standards": {
+      "command": "mcp-standards",
+      "args": []
+    }
+  }
+}
+
+# Restart Claude Desktop
+```
+
 ### 🚀 60-Second Quickstart
 
 Once Claude Desktop restarts, try this:
