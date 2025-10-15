@@ -145,6 +145,38 @@ uv sync
 # 4. Restart Claude Desktop - you're done!
 ```
 
+### 🚀 60-Second Quickstart
+
+Once Claude Desktop restarts, try this:
+
+```javascript
+// 1. Store a preference right now
+add_episode(
+    name="My First Preference",
+    content="I prefer using TypeScript over JavaScript for new projects",
+    source="user"
+)
+
+// 2. Search for it
+search_episodes(query="TypeScript", limit=5)
+
+// 3. Generate AI standards from your current project
+generate_ai_standards(project_path=".")
+```
+
+**What just happened?**
+- ✅ Your preference is stored in local SQLite database
+- ✅ Searchable in all future conversations
+- ✅ AI standards file generated from your project config
+
+**Next:** Start correcting Claude when it makes mistakes. After 3 similar corrections, run:
+```javascript
+get_learned_preferences(min_confidence=0.3)
+```
+You'll see MCP Standards has learned the pattern automatically!
+
+---
+
 ### Optional: Add Cost Optimization (99.5% Savings)
 
 **Want to save on AI costs?** Add [agentic-flow](https://github.com/ruvnet/agentic-flow) to route simple operations to cheaper models:
@@ -179,19 +211,121 @@ uv sync
 - Saves ~$389/month on typical usage
 - 100% optional - MCP Standards works perfectly without it
 
-### Try It
+## 📖 Quick Start Guide
 
-Open Claude Desktop or Claude Code:
+MCP Standards has **two complementary systems** for building your AI assistant's knowledge:
 
-```python
-# Generate AI standards from your project
-generate_ai_standards(project_path=".")
+### System 1: Episodes (Manual Knowledge - Immediate)
 
-# See what was learned
+Store facts, preferences, and instructions **right now**:
+
+```javascript
+// ✅ Store a preference immediately
+add_episode(
+    name="Package Manager Preference",
+    content="Always use uv instead of pip for Python. Example: uv pip install pytest",
+    source="user"
+)
+
+// 🔍 Search your stored knowledge
+search_episodes(query="package manager", limit=5)
+// Returns: Your uv preference with full context
+
+// 📋 List recent additions
+list_recent(limit=10)
+// Returns: Last 10 episodes you added
+```
+
+**When to use Episodes:**
+- ✅ Store a preference **immediately**
+- ✅ Document project-specific facts
+- ✅ Save code examples and snippets
+- ✅ Build a searchable knowledge base
+
+### System 2: Learned Preferences (Auto Pattern Detection - Over Time)
+
+The system **automatically learns** from repeated corrections:
+
+```javascript
+// 🤖 You DON'T call these - they happen automatically!
+// Example: You correct Claude 3+ times: "Use uv instead of pip"
+// → System detects pattern
+// → Creates learned preference with confidence score
+
+// 📊 Check what patterns were detected automatically
 get_learned_preferences(min_confidence=0.3)
+// Returns: Preferences learned from corrections with confidence scores
+// Example: { preference: "use uv over pip", confidence: 0.85, occurrences: 5 }
 
-# Update CLAUDE.md with learned patterns
-update_claudemd(file_path="./CLAUDE.md")
+// 💡 Get AI-suggested CLAUDE.md updates
+suggest_claudemd_update(
+    project_path="./my-project",
+    min_confidence=0.7
+)
+// Returns: "Add rule: Use uv for package management (confidence: 0.85)"
+
+// ✍️ Apply learned patterns to your CLAUDE.md
+update_claudemd(
+    file_path="./CLAUDE.md",
+    min_confidence=0.7
+)
+// Automatically updates CLAUDE.md with high-confidence learned patterns
+```
+
+**Learned preferences build automatically when:**
+- 🔄 You correct the same thing **3+ times**
+- 🔄 Patterns emerge across **different projects**
+- 🔄 Confidence scores reach thresholds:
+  - **0.3** = Emerging pattern (2-3 corrections)
+  - **0.7** = Strong preference (5-7 corrections)
+  - **0.9** = Very confident (10+ corrections)
+
+### 🎯 Practical Example: Teaching Claude to Use `uv`
+
+**Scenario:** You want Claude to always use `uv` instead of `pip`
+
+#### Option A: Store Immediately (Recommended for new preferences)
+
+```javascript
+add_episode(
+    name="Python Package Manager",
+    content="User prefers uv over pip. Always use: uv pip install <package>",
+    source="user"
+)
+```
+
+✅ **Available immediately** in search
+✅ **Works in current session**
+✅ **Manual but fast**
+
+#### Option B: Let System Learn (Automatic over time)
+
+1. **Day 1:** Correct Claude: "Use uv instead of pip" → Pattern #1 detected
+2. **Day 3:** Correct again on different project → Pattern #2 detected
+3. **Day 7:** Correct third time → **Learned preference created** (confidence: 0.3)
+4. **Day 14:** Fourth correction → Confidence increases to 0.7
+5. Run `get_learned_preferences()` → See the pattern
+6. Run `suggest_claudemd_update()` → Get suggestion to add to CLAUDE.md
+7. Run `update_claudemd()` → **Automatically updates** your config file
+
+✅ **Builds confidence scores**
+✅ **Suggests CLAUDE.md updates**
+✅ **Automatic but slower**
+
+### 🚀 Best Practice: Use Both!
+
+1. **Store critical preferences immediately** with `add_episode()`
+2. **Let the system learn patterns** over time from corrections
+3. **Review learned preferences** monthly with `get_learned_preferences()`
+4. **Update CLAUDE.md** when confidence scores are high (0.7+)
+
+### 🔧 Generate Standards from Existing Project
+
+```javascript
+// Auto-generate CLAUDE.md from existing config files
+generate_ai_standards(project_path=".")
+// Analyzes: .editorconfig, .prettierrc, eslint.config.js, pyproject.toml
+// Generates: CLAUDE.md, .github/copilot-instructions.md, .cursor/rules/
 ```
 
 ---
