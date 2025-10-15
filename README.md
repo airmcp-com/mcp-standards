@@ -145,7 +145,7 @@ uv sync
 
 ### Optional: Add Cost Optimization (99.5% Savings)
 
-**Want to save on AI costs?** Add [agentic-flow](https://github.com/ProfSynapse/agentic-flow) to route simple operations to cheaper models:
+**Want to save on AI costs?** Add [agentic-flow](https://github.com/ruvnet/agentic-flow) to route simple operations to cheaper models:
 
 ```bash
 # Get free Gemini API key: https://aistudio.google.com/app/apikey
@@ -159,7 +159,10 @@ uv sync
       "args": ["-y", "agentic-flow", "mcp"],
       "env": {
         "GEMINI_API_KEY": "your_gemini_api_key_here",
-        "DEFAULT_MODEL": "gemini-1.5-flash"
+        "DEFAULT_MODEL": "gemini-1.5-flash",
+        "SHOW_MODEL_USAGE": "true",
+        "SHOW_COST_SAVINGS": "true",
+        "LOG_LEVEL": "info"
       }
     }
   }
@@ -169,6 +172,8 @@ uv sync
 **What agentic-flow does:**
 - Routes simple operations (memory, search) → Gemini Flash ($0.075/1M tokens)
 - Keeps complex operations (code gen) → Claude Sonnet ($15/1M tokens)
+- **Shows which model was used** for each operation
+- **Displays cost savings** in real-time
 - Saves ~$389/month on typical usage
 - 100% optional - MCP Standards works perfectly without it
 
