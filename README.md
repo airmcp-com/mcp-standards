@@ -131,8 +131,10 @@ uv sync
       "command": "uv",
       "args": [
         "run",
+        "--directory",
+        "/ABSOLUTE/PATH/TO/mcp-standards",
         "python",
-        "/ABSOLUTE/PATH/TO/mcp-standards/run_server.py"
+        "run_server.py"
       ]
     }
   }
