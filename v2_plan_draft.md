@@ -64,3 +64,40 @@ hashtag#ContextEngineering hashtag#AgenticEngineering hashtag#AIAgents hashtag#D
 1) I want you to build me a linkedin post from the perspective of a side project/learning i'm doing. I like the perspective of: https://www.linkedin.com/in/hoenig-clemens-09456b98 and how he talks about his side projects. 
 
 3) Also, see how i can make the mcp server better using this inspriation and this context engineering guide: https://github.com/coleam00/context-engineering-intro to deliver a version 2 project plan.
+
+
+
+
+https://github.com/ruvnet/agentic-flow?tab=readme-ov-file#-core-components (https://github.com/ruvnet/agentic-flow/tree/main/agentic-flow/src/reasoningbank as example of claude integration)
+
+🧠 AgentDB: Ultra Fast Agent Memory System: I've separated the Claude Flow Memory system into a standalone package with built-in self-learning. 
+
+Here's why that matters.
+
+Every AI agent needs memory. Every intelligent system needs to learn from experience. Every production deployment needs performance that doesn't crumble under scale. When I built the vector database and reasoning engine for Claude Flow, I realized these components solved problems bigger than one framework.
+
+So I extracted and rebuilt them. AgentDB is now a complete vector intelligence platform that any developer can use, whether you're building with Claude Flow, LangChain, Codex custom agents, or integrating directly into agentic applications.
+
+The vector database with a brain. Store embeddings, search semantically, and build agents that learn from experience, all with 150x-12,500x performance improvements over traditional solutions.
+
+⚙️ Built for engineers who care about milliseconds
+⚡ Instant startup – Boots in under 10 ms (disk) or ~100 ms (browser)
+🪶 Lightweight – Memory or disk mode, zero config, minimal footprint
+🧠 Reasoning-aware – Stores patterns, tracks outcomes, recalls context
+🔗 Vector graph search – HNSW multi-level graph for 116x faster similarity queries
+🔄 Real-time sync – Swarms share discoveries in sub-second intervals
+🌍 Universal runtime – Node.js, web browser, edge, and agent hosts
+
+Try it: npx agentdb
+
+Benchmark: npx agentdb benchmark --quick
+
+Visit: agentdb.ruv.io • Demo: agentdb.ruv.io/demo
+
+https://agentdb.ruv.io/ for inspiration and to build upon management of sqlite to improve my build. 
+
+
+Install 🌊 Claude Flow using the new Claude Code website access. No VS Code or console required.
+
+
+https://www.anthropic.com/news/skills
