@@ -1,0 +1,34 @@
+{
+  "name": "mcp-standards-v2",
+  "version": "0.2.0-alpha.1",
+  "description": "Self-learning AI standards system with AgentDB vector memory",
+  "type": "module",
+  "scripts": {
+    "test": "pytest tests/",
+    "test:v2": "pytest tests/memory/v2/",
+    "benchmark": "python -m pytest tests/memory/v2/test_performance.py -v",
+    "agentdb:demo": "npx agentdb",
+    "agentdb:benchmark": "npx agentdb benchmark --quick"
+  },
+  "dependencies": {
+    "agentdb": "latest",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "claude",
+    "mcp",
+    "ai-assistant",
+    "vector-database",
+    "agentdb",
+    "memory-system",
+    "context-optimization"
+  ],
+  "author": "Matt Strautmann <matt.strautmann@gmail.com>",
+  "license": "MIT"
+}
