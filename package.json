@@ -8,7 +8,9 @@
     "test:v2": "pytest tests/memory/v2/",
     "benchmark": "python -m pytest tests/memory/v2/test_performance.py -v",
     "agentdb:demo": "npx agentdb",
-    "agentdb:benchmark": "npx agentdb benchmark --quick"
+    "agentdb:benchmark": "npx agentdb benchmark --quick",
+    "setup": "node scripts/setup-agentdb.js",
+    "start:simple": "uv run python src/mcp_standards/server_simple.py"
   },
   "dependencies": {
     "agentdb": "latest",
