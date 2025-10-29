@@ -1,14 +1,20 @@
 #!/usr/bin/env node
 /**
- * Setup script for AgentDB integration
+ * Setup script for AgentDB integration (ES Module)
  *
  * Verifies AgentDB installation and creates necessary directories
  */
 
-const { execSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
-const os = require('os');
+import { execSync } from 'child_process';
+import fs from 'fs';
+import path from 'path';
+import os from 'os';
+import { fileURLToPath } from 'url';
+
+// ES module equivalent of __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectRoot = path.resolve(__dirname, '..');
 
 console.log('🚀 Setting up MCP Standards (Simple) with AgentDB...\n');
 
@@ -100,7 +106,7 @@ console.log('         "command": "uv",');
 console.log('         "args": [');
 console.log('           "run",');
 console.log('           "--directory",');
-console.log(`           "${process.cwd()}",`);
+console.log(`           "${projectRoot}",`);
 console.log('           "python",');
 console.log('           "src/mcp_standards/server_simple.py"');
 console.log('         ]');
