@@ -105,7 +105,7 @@ python3 -c "import mcp; print('MCP OK')"
 
 ```bash
 # Test server can start (won't connect without Claude Desktop)
-uv run python src/mcp_standards/server_simple.py
+uv run python -m mcp_standards.server_simple
 
 # Expected output:
 # ✓ MCP Standards (Simple) initialized
@@ -130,7 +130,8 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
         "--directory",
         "/ABSOLUTE/PATH/TO/mcp-standards",
         "python",
-        "src/mcp_standards/server_simple.py"
+        "-m",
+        "mcp_standards.server_simple"
       ]
     }
   }

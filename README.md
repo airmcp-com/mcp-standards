@@ -56,7 +56,8 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
         "--directory",
         "/ABSOLUTE/PATH/TO/mcp-standards",
         "python",
-        "src/mcp_standards/server_simple.py"
+        "-m",
+        "mcp_standards.server_simple"
       ]
     }
   }
