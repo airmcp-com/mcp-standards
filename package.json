@@ -10,7 +10,7 @@
     "agentdb:demo": "npx agentdb",
     "agentdb:benchmark": "npx agentdb benchmark --quick",
     "setup": "node scripts/setup-agentdb.js",
-    "start:simple": "uv run python src/mcp_standards/server_simple.py"
+    "start:simple": "uv run python -m mcp_standards.server_simple"
   },
   "dependencies": {
     "agentdb": "latest",
