@@ -143,20 +143,35 @@ A minimal MCP server with two core tools (`remember` and `recall`) that:
 
 ### 4.1 Technology Stack
 
-**Core**:
-- Python 3.11+ with `uv` package manager
-- MCP SDK: `mcp` package (official Anthropic SDK)
-- Vector Database: AgentDB (150x faster than alternatives)
+**🚨 UPDATED 2025-10-30**: Changed from Python to **TypeScript/Rust**
 
-**Development**:
-- Testing: pytest
-- Type Checking: mypy
-- Linting: ruff
-- Build: uv + pyproject.toml
+**Core (TypeScript - Recommended)**:
+- TypeScript + Node.js 18+
+- MCP SDK: `@modelcontextprotocol/sdk` (official Anthropic SDK v1.20.2+)
+- Vector Database: AgentDB (150x faster, native Node.js support)
+- Embeddings: transformers.js or sentence-transformers
+
+**Core (Rust - High Performance Alternative)**:
+- Rust + cargo
+- MCP SDK: `rmcp` or Prism MCP Rust SDK
+- Vector Database: AgentDB via FFI or qdrant-client
+- Embeddings: Rust crate or Python bridge
+
+**Development (TypeScript)**:
+- Testing: vitest
+- Type Checking: tsc (TypeScript compiler)
+- Linting: eslint, prettier
+- Build: tsup or esbuild
+
+**Development (Rust)**:
+- Testing: cargo test
+- Type Checking: rustc
+- Linting: clippy
+- Build: cargo build --release
 
 **Deployment**:
 - Distribution: npm package (`npx mcp-standards`)
-- Python execution: `uv run python -m mcp_standards.server_simple`
+- Execution: `node dist/index.js` (TypeScript) or `./target/release/mcp-standards` (Rust)
 - Config: Claude Desktop `claude_desktop_config.json`
 
 ### 4.2 Data Model
@@ -169,10 +184,10 @@ A minimal MCP server with two core tools (`remember` and `recall`) that:
   "category": str,              # python|git|docker|general
   "importance": int,            # 1-10 priority
   "timestamp": datetime,        # Creation time
-  "embedding": List[float],     # 768-dim vector (AgentDB)
+  "embedding": number[],        # 384-dim vector (all-MiniLM-L6-v2) ✅ CORRECTED
   "metadata": {
-    "source": str,              # "user_correction" | "explicit"
-    "context": str              # Optional context
+    "source": string,           # "user_correction" | "explicit"
+    "context": string           # Optional context
   }
 }
 ```
@@ -185,23 +200,48 @@ A minimal MCP server with two core tools (`remember` and `recall`) that:
 
 ### 4.3 File Structure
 
+**TypeScript Structure**:
 ```
 mcp-standards/
-├── src/mcp_standards/
-│   ├── __init__.py
-│   ├── server_simple.py          # Main MCP server
-│   ├── memory_store.py           # AgentDB wrapper
-│   └── utils.py                  # Helpers
+├── src/
+│   ├── index.ts                  # Main MCP server entry point
+│   ├── server.ts                 # MCP server implementation
+│   ├── memory-store.ts           # AgentDB wrapper
+│   ├── embeddings.ts             # Embedding generation
+│   ├── types.ts                  # TypeScript interfaces
+│   └── utils.ts                  # Helpers
 ├── tests/
-│   ├── test_server.py
-│   ├── test_memory_store.py
-│   └── test_integration.py
+│   ├── server.test.ts
+│   ├── memory-store.test.ts
+│   └── integration.test.ts
 ├── docs/
 │   ├── PRD.md                    # This file
 │   ├── SETUP_GUIDE.md
 │   └── VALIDATION_CHECKLIST.md
-├── pyproject.toml                # Python config
-├── package.json                  # npm distribution
+├── package.json                  # npm config + distribution
+├── tsconfig.json                 # TypeScript config
+└── README.md
+```
+
+**Rust Structure (Alternative)**:
+```
+mcp-standards/
+├── src/
+│   ├── main.rs                   # Main MCP server entry point
+│   ├── server.rs                 # MCP server implementation
+│   ├── memory_store.rs           # AgentDB/vector DB wrapper
+│   ├── embeddings.rs             # Embedding generation
+│   └── lib.rs                    # Library exports
+├── tests/
+│   ├── server_test.rs
+│   ├── memory_store_test.rs
+│   └── integration_test.rs
+├── docs/
+│   ├── PRD.md                    # This file
+│   ├── SETUP_GUIDE.md
+│   └── VALIDATION_CHECKLIST.md
+├── Cargo.toml                    # Rust config
+├── package.json                  # npm wrapper for distribution
 └── README.md
 ```
 

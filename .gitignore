@@ -1,44 +1,21 @@
-# Environment and secrets
-.env
-*.key
-*.pem
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
 
-# Database files
-*.db
-*.db-shm
-*.db-wal
-*.sqlite
-*.sqlite-journal
-*.sqlite-wal
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
+# Build outputs
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+build/
+*.tsbuildinfo
 
-# Virtual environments
-venv/
-ENV/
-env/
-.venv
+# Testing
+coverage/
+.nyc_output
+
+# Environment
+.env
+.env.local
+.env.*.local
 
 # IDE
 .vscode/
@@ -46,76 +23,23 @@ env/
 *.swp
 *.swo
 *~
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-
-# OS
 .DS_Store
-Thumbs.db
 
 # Logs
+logs
 *.log
-logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
 
-# Temporary
-tmp/
-temp/
+# MCP Memory Data (optional - commit if you want to share)
+.mcp-memory/
+
+# Temporary files
 *.tmp
-docs/guides/PUBLISHING.md
+.cache/
 
-# MCP cache
-.mcp-cache/
-.claude-flow/
-.mypy_cache/
-.ruff_cache/
-
-# Local config overrides
-.mcp.json
-
-# Package build artifacts
-*.whl
-pip-wheel-metadata/
-
-# Coverage reports
-.coverage.*
-coverage.xml
-nosetests.xml
-
-# Jupyter
-.ipynb_checkpoints/
-*.ipynb
-
-# macOS
-.AppleDouble
-.LSOverride
-
-# Claude Flow generated files
-.claude/settings.local.json
-.mcp.json
-claude-flow.config.json
-.swarm/
-.hive-mind/
-.claude-flow/
-memory/
-coordination/
-memory/claude-flow-data.json
-memory/sessions/*
-!memory/sessions/README.md
-memory/agents/*
-!memory/agents/README.md
-coordination/memory_bank/*
-coordination/subtasks/*
-coordination/orchestration/*
-*.db
-*.db-journal
-*.db-wal
-*.sqlite
-*.sqlite-journal
-*.sqlite-wal
-claude-flow
-# Removed Windows wrapper files per user request
-hive-mind-prompt-*.txt
+# OS
+Thumbs.db
