@@ -94,25 +94,61 @@ class SimpleMemoryMCP:
                 # Personal Memory Tools (NEW - AgentDB)
                 Tool(
                     name="remember",
-                    description="Store a preference in personal memory (automatic via corrections, or manual)",
+                    description=(
+                        "Store user preferences, corrections, and workflow rules in semantic memory. "
+                        "Use when user explicitly shares preferences or corrects your suggestions. "
+                        "**Trigger phrases**: 'remember', 'I prefer', 'always use', 'never use', "
+                        "'my workflow', 'instead of', 'not X, use Y'. "
+                        "**Examples**: 'Remember: use uv not pip', 'I prefer conventional commits', "
+                        "'Always run tests before committing', 'Use Docker Compose v2 only'. "
+                        "**Categories**: python (pip/uv/poetry/conda), git (commit style, branch naming), "
+                        "docker (commands, compose versions), general (any dev preferences)."
+                    ),
                     inputSchema={
                         "type": "object",
                         "properties": {
-                            "content": {"type": "string", "description": "What to remember (e.g., 'use uv not pip')"},
-                            "category": {"type": "string", "description": "Category (python, git, docker, general)", "default": "general"},
+                            "content": {
+                                "type": "string",
+                                "description": "User's preference or correction (e.g., 'use uv not pip', 'prefer async/await over callbacks')"
+                            },
+                            "category": {
+                                "type": "string",
+                                "description": "Category: python, git, docker, or general",
+                                "default": "general"
+                            },
                         },
                         "required": ["content"],
                     },
                 ),
                 Tool(
                     name="recall",
-                    description="Search personal memory for preferences (semantic search)",
+                    description=(
+                        "Search user's stored preferences using semantic search. "
+                        "**IMPORTANT: Use this BEFORE making any tool/command recommendations.** "
+                        "Check if user has preferences for: Python package managers (pip/uv/poetry/conda), "
+                        "Git workflows (commit styles, branch naming, merge vs rebase), "
+                        "Docker commands (compose versions, container preferences), "
+                        "or general development patterns. "
+                        "**Always use when**: suggesting a package manager, recommending git commands, "
+                        "proposing Docker setup, choosing between tool alternatives, or making workflow suggestions. "
+                        "**Query examples**: 'python package manager', 'git commit style', 'docker compose preference'."
+                    ),
                     inputSchema={
                         "type": "object",
                         "properties": {
-                            "query": {"type": "string", "description": "What to search for (natural language)"},
-                            "category": {"type": "string", "description": "Filter by category (optional)"},
-                            "top_k": {"type": "integer", "description": "Number of results", "default": 5},
+                            "query": {
+                                "type": "string",
+                                "description": "Natural language search query (e.g., 'python package manager', 'git workflow preferences')"
+                            },
+                            "category": {
+                                "type": "string",
+                                "description": "Optional filter: python, git, docker, or general"
+                            },
+                            "top_k": {
+                                "type": "integer",
+                                "description": "Number of results to return (default: 5)",
+                                "default": 5
+                            },
                         },
                         "required": ["query"],
                     },
