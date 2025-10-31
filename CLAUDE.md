@@ -342,6 +342,186 @@ Message 4: Write "file.js"
 
 ---
 
+## 🧠 MCP Tool Auto-Discovery Best Practices
+
+### Critical: Tool Descriptions Control Auto-Discovery
+
+**THE KEY INSIGHT**: In MCP protocol, tool descriptions are the ONLY mechanism for automatic tool discovery. Quality determines whether Claude automatically uses tools (70-85% rate) or requires explicit invocation (manual).
+
+### Formula for Auto-Discovery
+
+```python
+Tool(
+    name="action_verb",
+    description=(
+        "<What it does> <domain specificity>. "
+        "Use when <trigger conditions>. "
+        "**Trigger phrases**: '<phrase1>', '<phrase2>', '<pattern>'. "
+        "**Examples**: '<concrete example 1>', '<example 2>'. "
+        "**Always use when**: <scenario 1>, <scenario 2>. "
+        "**Categories/Domains**: <specific areas it covers>."
+    ),
+    inputSchema={
+        "properties": {
+            "param": {
+                "description": "<what param is> (e.g., '<concrete example>')"
+            }
+        }
+    }
+)
+```
+
+### Essential Patterns for High Auto-Trigger Rates
+
+**1. Explicit Trigger Phrases**
+- List exact user phrases: "remember", "I prefer", "always use", "never use"
+- Include patterns: "instead of", "not X, use Y", "actually use X"
+- Show corrections: "no, use X", "switch to Y"
+
+**2. Directive Language for Proactive Tools**
+- "**IMPORTANT: Use this BEFORE**" - Strong priority signal
+- "**MUST USE BEFORE**" - Maximum strength for prerequisite checks
+- "**Always use when**" - Define auto-trigger scenarios explicitly
+
+**3. Domain-Specific Context**
+- ✅ "Python package managers (pip/uv/poetry/conda)"
+- ❌ "package managers" (too generic)
+- ✅ "Git workflows (commit styles, branch naming, merge vs rebase)"
+- ❌ "version control" (too vague)
+
+**4. Concrete Examples in Descriptions**
+- Show real user phrases: "Remember: use uv not pip"
+- Demonstrate queries: "python package manager", "git commit style"
+- Include parameter examples: "category: python, git, docker, general"
+
+### What Doesn't Work
+
+- ❌ Generic descriptions: "Store a preference" (Claude won't know when to use)
+- ❌ MCP Prompts for routing (must be manually invoked, not auto)
+- ❌ MCP Resources for triggers (must be manually added via @)
+- ❌ Assuming tool names alone convey purpose
+- ❌ Implicit behavior without trigger phrases
+
+### Example: Personal Memory MCP Tools
+
+**remember tool (85-95% auto-trigger)**:
+```python
+"Store user preferences, corrections, and workflow rules in semantic memory. "
+"Use when user explicitly shares preferences or corrects your suggestions. "
+"**Trigger phrases**: 'remember', 'I prefer', 'always use', 'never use', "
+"'my workflow', 'instead of', 'not X, use Y'. "
+"**Examples**: 'Remember: use uv not pip', 'I prefer conventional commits'..."
+```
+
+**recall tool (70-85% auto-trigger)**:
+```python
+"Search user's stored preferences using semantic search. "
+"**IMPORTANT: Use this BEFORE making any tool/command recommendations.** "
+"Check if user has preferences for: Python package managers (pip/uv/poetry/conda), "
+"Git workflows (commit styles, branch naming, merge vs rebase)..."
+```
+
+### Testing Auto-Discovery
+
+**Test Patterns**:
+- Explicit: "Remember: use uv not pip" → Should auto-trigger remember
+- Implicit: "What Python package manager should I use?" → Should auto-trigger recall
+- Correction: "Actually, use poetry instead" → Should detect pattern
+
+**Verification**:
+```bash
+# Monitor MCP tool invocations in real-time
+tail -f ~/Library/Logs/Claude/mcp*.log | grep "tools/call"
+```
+
+### References
+
+- MCP Specification: https://modelcontextprotocol.io/specification/2025-06-18/server/tools
+- GitHub MCP Server: Engineering patterns for tool descriptions
+- Project Memory: `docs/.project_memory.md` - Detailed learnings and examples
+
+**Key Quote from GitHub Team**:
+> "How we name a tool, explain what it does, and spell out its parameters directly affects whether the model picks the right tool, in the right order, with the right arguments."
+
+---
+
+## 🔧 Python Module Execution (Critical for MCP Servers)
+
+### Problem: Import Errors with Direct File Execution
+
+**Error**: `ImportError: attempted relative import with no known parent package`
+
+**Cause**: Running Python files directly breaks relative imports
+
+```bash
+# ❌ WRONG (causes ImportError)
+python src/mcp_standards/server_simple.py
+
+# ✅ CORRECT (resolves imports properly)
+python -m mcp_standards.server_simple
+```
+
+### Solution: Always Use Module Syntax
+
+**Claude Desktop Config**:
+```json
+{
+  "mcpServers": {
+    "server-name": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "/absolute/path/to/project",
+        "python",
+        "-m",
+        "package.module"
+      ]
+    }
+  }
+}
+```
+
+**package.json Scripts**:
+```json
+{
+  "scripts": {
+    "start": "uv run python -m package.module"
+  }
+}
+```
+
+**All Documentation**: Update README, setup guides, validation checklists to show `-m` syntax
+
+### Why This Matters
+
+- Python packages with `__init__.py` depend on module context
+- MCP servers often use relative imports between modules
+- Direct file execution loses package hierarchy
+- `python -m` preserves proper import resolution
+
+---
+
+## 📋 User Preferences (Project-Specific)
+
+### Package Management
+- **Always use `uv` instead of `pip`** for Python packages
+- Syntax: `uv pip install package` or `uv run python -m module`
+
+### Documentation Style
+- Concrete examples over abstract explanations
+- Include trigger phrases and patterns explicitly
+- Show both correct (✅) and incorrect (❌) approaches
+- Reference actual file paths with line numbers
+
+### Commit Style
+- Conventional commits: `<type>: <summary>`
+- Detailed body with bullet points
+- Include rationale and references
+- Add co-authorship: `Co-Authored-By: Claude <noreply@anthropic.com>`
+
+---
+
 Remember: **Claude Flow coordinates, Claude Code creates!**
 
 # important-instruction-reminders
