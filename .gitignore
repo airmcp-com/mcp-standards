@@ -1,17 +1,30 @@
-# Environment and secrets
+# =============================================================================
+# Environment and Secrets
+# =============================================================================
 .env
+.env.local
+.env.*.local
 *.key
 *.pem
+*.p12
+*.pfx
+credentials.json
+secrets.json
 
-# Database files
-*.db
-*.db-shm
-*.db-wal
-*.sqlite
-*.sqlite-journal
-*.sqlite-wal
+# =============================================================================
+# Node.js / npm
+# =============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+package-lock.json
 
+# =============================================================================
 # Python
+# =============================================================================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -33,73 +46,95 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
+uv.lock
 
 # Virtual environments
 venv/
 ENV/
 env/
-.venv
+.venv/
+.virtualenv/
 
-# IDE
+# =============================================================================
+# Database Files
+# =============================================================================
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.sqlite-wal
+
+# =============================================================================
+# IDE and Editors
+# =============================================================================
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
 
-# Testing
+# =============================================================================
+# Testing and Coverage
+# =============================================================================
 .pytest_cache/
 .coverage
+.coverage.*
 htmlcov/
 .tox/
+coverage.xml
+nosetests.xml
+*.cover
+.hypothesis/
 
-# OS
+# =============================================================================
+# Operating System
+# =============================================================================
+# macOS
 .DS_Store
-Thumbs.db
+.AppleDouble
+.LSOverride
+._*
 
-# Logs
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# =============================================================================
+# Logs and Temporary Files
+# =============================================================================
 *.log
 logs/
-
-# Temporary
 tmp/
 temp/
 *.tmp
-docs/guides/PUBLISHING.md
+*.temp
+*.bak
+*.backup
 
-# MCP cache
+# =============================================================================
+# MCP and AgentDB
+# =============================================================================
 .mcp-cache/
+.mcp-standards/
+.agentdb/
+
+# =============================================================================
+# Claude Flow / AI Coordination
+# =============================================================================
 .claude-flow/
-.mypy_cache/
-.ruff_cache/
-
-# Local config overrides
-.mcp.json
-
-# Package build artifacts
-*.whl
-pip-wheel-metadata/
-
-# Coverage reports
-.coverage.*
-coverage.xml
-nosetests.xml
-
-# Jupyter
-.ipynb_checkpoints/
-*.ipynb
-
-# macOS
-.AppleDouble
-.LSOverride
-
-# Claude Flow generated files
-.claude/settings.local.json
-.mcp.json
-claude-flow.config.json
 .swarm/
 .hive-mind/
-.claude-flow/
 memory/
 coordination/
 memory/claude-flow-data.json
@@ -110,12 +145,42 @@ memory/agents/*
 coordination/memory_bank/*
 coordination/subtasks/*
 coordination/orchestration/*
-*.db
-*.db-journal
-*.db-wal
-*.sqlite
-*.sqlite-journal
-*.sqlite-wal
-claude-flow
-# Removed Windows wrapper files per user request
 hive-mind-prompt-*.txt
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# =============================================================================
+# Build Artifacts
+# =============================================================================
+*.whl
+pip-wheel-metadata/
+*.tgz
+*.tar.gz
+
+# =============================================================================
+# Jupyter
+# =============================================================================
+.ipynb_checkpoints/
+*.ipynb
+
+# =============================================================================
+# Linting and Type Checking
+# =============================================================================
+.mypy_cache/
+.ruff_cache/
+.pylint.d/
+.eslintcache
+
+# =============================================================================
+# Local Configuration Overrides
+# =============================================================================
+.mcp.json
+claude-flow.config.json
+config.local.json
+
+# =============================================================================
+# Archive-Specific (kept for reference)
+# =============================================================================
+# Removed in cleanup - add back if generated during testing
+# docs/guides/PUBLISHING.md

@@ -1,9 +1,12 @@
 # MCP Standards - Personal Memory for Claude
 
+> **⚠️ ARCHIVED PROJECT**: This repository is archived and provided for reference only. The project was experimental and served as a proof-of-concept for automatic preference learning with AgentDB vector memory. See [ARCHIVE.md](ARCHIVE.md) for complete details.
+
 **Make Claude remember YOUR preferences automatically. Zero config, zero manual steps.**
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Archived](https://img.shields.io/badge/status-archived-inactive.svg)](ARCHIVE.md)
 
 ---
 
@@ -380,6 +383,17 @@ npm run setup
 ```
 
 **Stop repeating yourself. Start remembering automatically.** 🎯
+
+---
+
+## 📦 Archive Status
+
+**This project is archived.** See [ARCHIVE.md](docs/ARCHIVE.md) for:
+- Complete project status and achievements
+- Security audit results
+- Full documentation index
+- Lessons learned and technical insights
+- How to use this repository as reference
 
 ---
 
